@@ -1,0 +1,24 @@
+const SERVER_URL = "http://127.0.0.1:3000";
+
+export async function askAI(question: string) {
+  try {
+    const response = await fetch(`${SERVER_URL}/ask`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question,
+      }),
+    });
+
+    const data = await response.json();
+
+    console.log("AI Response:", data);
+
+    return data.answer || "No answer received.";
+  } catch (error) {
+    console.log("AI Error:", error);
+    return "Mate could not connect to the AI server.";
+  }
+}
