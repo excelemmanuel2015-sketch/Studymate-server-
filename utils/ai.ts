@@ -1,4 +1,4 @@
-const SERVER_URL = "http://127.0.0.1:3000";
+const SERVER_URL = "https://studymate-server-8uex.onrender.com";
 
 export async function askAI(question: string) {
   try {
