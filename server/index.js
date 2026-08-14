@@ -51,13 +51,22 @@ Rules:
 - Give examples when useful.
 - Encourage learning rather than simply giving answers.
 - Keep responses appropriate for students.
+- Do not use Markdown bold formatting with **.
+- Do not use Markdown code formatting with backticks.
+- Keep mathematical expressions clean, for example write 2+2 instead of 2 + 2.
 
 Student's question:
 ${question}`,
     });
 
+    const cleanAnswer = response.text
+      .replace(/\*\*/g, "")
+      .replace(/__/g, "")
+      .replace(/`/g, "")
+      .replace(/\s*\+\s*/g, "+");
+
     res.json({
-      answer: response.text,
+      answer: cleanAnswer,
     });
   } catch (error) {
     console.error("Gemini error:", error);
